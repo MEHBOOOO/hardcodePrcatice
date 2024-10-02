@@ -35,7 +35,22 @@ namespace OrderService.Controllers{
             orders.Add(newOrder);
             return CreatedAtAction(nameof(GetOrder), new { id = newOrder.Id }, newOrder);
         }
+
+//удаление заказа
+
+
+//обновление заказа
+        [HttpPut("{id}")]
+        public ActionResult<Order> UpdateOrder(int id, [FromBody] Order updatedOrder){
+            var existingOrder = orders.FirstOrDefault(o => o.Id == id);
+            if(existingOrder == null){
+                return NotFound();
+            }
+            existingOrder.ProductName = updatedOrder.ProductName;
+            existingOrder.Quantity = updatedOrder.Quantity;
+            existingOrder.Price = updatedOrder.Price;
+
+            return NoContent();
+        }
     }
 }
-//удаление заказа
-//обновление заказа
