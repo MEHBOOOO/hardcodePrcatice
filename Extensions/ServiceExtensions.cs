@@ -1,14 +1,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OrderService.Data; 
+using OrderService.Data;
 
-namespace OrderService.Extensions{
-    public static class ServiceExtensions{
+namespace OrderService.Extensions
+{
+    public static class ServiceExtensions
+    {
         public static void ConfigureDbContext(
-            this IServiceCollection services, IConfiguration configuration){
+            this IServiceCollection services, IConfiguration configuration)
+        {
             services.AddDbContext<OrderContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
         }
     }
-};
+}
