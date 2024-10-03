@@ -34,29 +34,39 @@ namespace OrderService.Controllers{
         }
 
 // post запрос на создание нового заказа
+    public record OrderCreateDTO(string ProductName, int Quantity, decimal Price);
+
         [HttpPost]
-        public async Task<ActionResult<Order>> CreateOrder([FromBody] Order newOrder){
-            if (newOrder == null || string.IsNullOrWhiteSpace(newOrder.ProductName)){
+        public async Task<ActionResult<Order>> CreateOrder([FromBody] OrderCreateDTO newOrderDTO){
+            if(newOrderDTO == null || string.IsNullOrWhiteSpace(newOrderDTO.ProductName)){
             return BadRequest("ProductName is required.");
     }
+            var newOrder = new Order{
+                ProductName = newOrderDTO.ProductName,
+                Quantity = newOrderDTO.Quantity,
+                Price = newOrderDTO.Price
+            };
             _context.Orders.Add(newOrder);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetOrder), new { id = newOrder.Id }, newOrder);
+            return CreatedAtAction(nameof(GetOrder), new { id = newOrder.Id }, newOrderDTO);
 }
 
 
 // put запрос на обновление заказа
+    public record OrderUpdateDTO(string ProductName, int Quantity, decimal Price);
+
         [HttpPut("{id}")]
-        public async Task<ActionResult<Order>> UpdateOrder(int id, [FromBody] Order updatedOrder){
+
+        public async Task<ActionResult<Order>> UpdateOrder(int id, [FromBody] OrderUpdateDTO updatedOrderDTO){
             var existingOrder = await _context.Orders.FindAsync(id);
             if(existingOrder == null){
                 return NotFound();
             }
 
-            existingOrder.ProductName = updatedOrder.ProductName;
-            existingOrder.Quantity = updatedOrder.Quantity;
-            existingOrder.Price = updatedOrder.Price;
+            existingOrder.ProductName = updatedOrderDTO.ProductName;
+            existingOrder.Quantity = updatedOrderDTO.Quantity;
+            existingOrder.Price = updatedOrderDTO.Price;
 
             await _context.SaveChangesAsync();
 
