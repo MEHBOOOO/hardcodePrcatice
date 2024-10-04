@@ -1,11 +1,39 @@
 {
   "Version": 1,
-  "Hash": "Rg7wjAImF2CHvUjNkPck4xyZdPrtVwNBvw77RpQq1AM=",
+  "Hash": "3MzQGlX8E+2dGClZYGFF8R9oAFQIeabs+DtJ2LiwGaQ=",
   "Source": "OrderService",
   "BasePath": "_content/OrderService",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "OrderService\\wwwroot",
+      "Source": "OrderService",
+      "ContentRoot": "C:\\Users\\Bauyr\\Desktop\\OrderService\\wwwroot\\",
+      "BasePath": "_content/OrderService",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Bauyr\\Desktop\\OrderService\\wwwroot\\index.html",
+      "SourceId": "OrderService",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Bauyr\\Desktop\\OrderService\\wwwroot\\",
+      "BasePath": "_content/OrderService",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
 }
